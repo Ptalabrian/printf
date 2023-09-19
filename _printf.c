@@ -28,12 +28,15 @@ int _printf(const char *format, ...)
 		{
 			format++;
 
-			for (i = 0; i < size; i++)
+			if (*format)
 			{
-				if (*format == formtspec[i].specifier)
+				for (i = 0; i < size; i++)
 				{
-					count += formtspec[i].handler(arg);
-					break;
+					if (*format == formtspec[i].specifier)
+					{
+						count += formtspec[i].handler(arg);
+						break;
+					}
 				}
 			}
 		}
