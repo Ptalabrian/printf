@@ -11,10 +11,11 @@
 * @handler: handles on what to be printed
 */
 
-typedef struct formatspec {
+typedef struct formatspec
+{
 	char specifier;
 	int (*handler)(va_list arg);
-}formatspec_t;
+} formatspec_t;
 
 /** Function prototypes required **/
 int _printf(const char *format, ...);
