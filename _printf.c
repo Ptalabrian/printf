@@ -16,7 +16,7 @@ int _printf(const char *format, ...)
 	{'s', print_string},
 	{'%', print_perc}
 };
-	int size = sizeof(formtspec)/ sizeof(formtspec[0]);
+	int size = sizeof(formtspec) / sizeof(formtspec[0]);
 
 	va_start(arg, format);
 
