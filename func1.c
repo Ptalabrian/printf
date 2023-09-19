@@ -11,6 +11,7 @@ int print_char(va_list arg)
 	char c = va_arg(arg, int);
 
 	write(1, &c, 1);
+	return (0);
 }
 
 /**
@@ -28,6 +29,7 @@ int print_string(va_list arg)
 		l++;
 
 	write(1, str, l);
+	return (0);
 }
 
 /**
@@ -38,7 +40,11 @@ int print_string(va_list arg)
 
 int print_perc(va_list arg)
 {
-	char perc = '%';
+	(void)arg;
+	{
+		char perc = '%';
 
-	write(1, &perc, 1);
+		write(1, &perc, 1);
+		return (0);
+	}
 }
