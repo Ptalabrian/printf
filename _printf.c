@@ -12,43 +12,39 @@ int _printf(const char *format, ...)
 	va_list arg;
 	int count = 0, i;
 	formatspec_t formtspec[] = {
-	{'c', print_char},
-	{'s', print_string},
-	{'%', print_perc}
-};
+	{'c', print_char}, {'s', print_string},
+	{'%', print_perc} };
 	int size = sizeof(formtspec) / sizeof(formtspec[0]);
+	const char *p = format;
 
 	va_start(arg, format);
-
-	if (format == NULL)
+	if (p == NULL)
 		return (-1);
-	while (*format)
+	while (*p)
 	{
-		if (*format == '%')
+		if (*p == '%')
 		{
-			format++;
-
-			if (*format)
+			p++;
+			if (*p)
 			{
 				for (i = 0; i < size; i++)
 				{
-					if (*format == formtspec[i].specifier)
+					if (*p == formtspec[i].specifier)
 					{
 						count += formtspec[i].handler(arg);
 						break;
 					}
 				}
 			}
+			if (*p == '\0')
+				break;
 		}
 		else
 		{
-			write(1, format, 1);
+			write(1, p, 1);
 			count++;
 		}
-
-		if (*format == '\0')
-			break;
-		format++;
+		p++;
 	}
 	va_end(arg);
 	return (count);
